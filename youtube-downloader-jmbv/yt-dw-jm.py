@@ -1,17 +1,19 @@
 from pytube import YouTube, Playlist
 from os import path
 
-video_url = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+# region test code
 
-list_url = "https://www.youtube.com/playlist?list=PLpjXzIK4leLynAEagpDMpREgMt2uM6rQz"
+# video_url = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
 
-yt = YouTube(
-    video_url,
-    use_oauth=True,
-    allow_oauth_cache=True,
-)
+# list_url = "https://www.youtube.com/playlist?list=PLpjXzIK4leLynAEagpDMpREgMt2uM6rQz"
 
-pl = Playlist(list_url)
+# yt = YouTube(
+#     video_url,
+#     use_oauth=True,
+#     allow_oauth_cache=True,
+# )
+
+# pl = Playlist(list_url)
 
 # print(pl)
 
@@ -27,6 +29,11 @@ pl = Playlist(list_url)
 # for stream in yt.streams.filter(only_audio=True).order_by("abr").desc():
 #     print(stream)
 
+# endregion
+
+
+# region functions
+
 
 def descargar_video(url, dir=None, name=None):
 
@@ -41,13 +48,6 @@ def descargar_video(url, dir=None, name=None):
     ).desc().first().download(output_path=dir, filename=f"{name}.mp4")
 
 
-# descargar_video(
-#     "https://www.youtube.com/watch?v=vuaApmJW6Yo",
-#     dir=rf"C:\Users\hp\Downloads",
-#     name="prueba",
-# )
-
-
 def descargar_audio(url, dir=None, name=None):
     yt = YouTube(
         url,
@@ -58,13 +58,6 @@ def descargar_audio(url, dir=None, name=None):
     yt.streams.filter(only_audio=True).order_by("abr").desc().first().download(
         output_path=dir, filename=f"{name}.mp3"
     )
-
-
-# descargar_audio(
-#     "https://www.youtube.com/watch?v=PX-RhjDLVDQ&list=PLpjXzIK4leLynAEagpDMpREgMt2uM6rQz&index=2",
-#     dir=rf"C:\Users\hp\Downloads",
-#     name="say_my_name",
-# )
 
 
 def descargar_video_playlist(url, dir=None, folder_name=None):
@@ -100,9 +93,6 @@ def descargar_video_playlist(url, dir=None, folder_name=None):
         )
 
 
-# descargar_video_playlist(list_url, dir=rf"C:\Users\hp\Downloads", folder_name="prueba")
-
-
 def descargar_audio_playlist(url, dir=None, folder_name=None):
     pl = Playlist(url)
     if folder_name is None:
@@ -133,4 +123,28 @@ def descargar_audio_playlist(url, dir=None, folder_name=None):
         )
 
 
+# endregion
+
+
+# region function example calls
+
+# video_url = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+# list_url = "https://www.youtube.com/playlist?list=PLpjXzIK4leLynAEagpDMpREgMt2uM6rQz"
+
+# descargar_video(video_url)
+# descargar_video(video_url, dir=rf"C:\Users\hp\Downloads")
+# descargar_video(video_url, dir=rf"C:\Users\hp\Downloads", name="prueba_video")
+
+# descarregar_audio(video_url)
+# descarregar_audio(video_url, dir=rf"C:\Users\hp\Downloads")
+# descarregar_audio(video_url, dir=rf"C:\Users\hp\Downloads", name="prueba_audio")
+
+# descargar_video_playlist(list_url)
+# descargar_video_playlist(list_url, dir=rf"C:\Users\hp\Downloads")
+# descargar_video_playlist(list_url, dir=rf"C:\Users\hp\Downloads", folder_name="prueba_carpeta_videos")
+
 # descargar_audio_playlist(list_url)
+# descargar_audio_playlist(list_url, dir=rf"C:\Users\hp\Downloads")
+# descargar_audio_playlist(list_url, dir=rf"C:\Users\hp\Downloads", folder_name="prueba_carpeta_audios")
+
+# endregion
